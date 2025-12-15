@@ -18,9 +18,9 @@ public class TechProduct extends Product{
 	}
 
 
-	public TechProduct(int id, String name, double price, int stock, String producer, double stars, String type,
+	public TechProduct(int id, int seller_id,String name, double price, int stock, String producer, double stars, String type,
 			int yearOfProduction, boolean guarentee) {
-		super(id, name, price, stock, producer, stars);
+		super(id, seller_id,name, price, stock, producer, stars);
 		this.type = type;
 		this.yearOfProduction = yearOfProduction;
 		this.guarentee = guarentee;

@@ -10,13 +10,15 @@ public abstract class Product implements ProductInterface{
 	protected String producer;
 	protected double stars;
 	protected double shippingWeight;
+	protected int seller_id;
 
 	
 	
 	
-	public Product(int id, String name, double price, int stock, String producer, double stars) {
+	public Product(int id,int seller_id, String name, double price, int stock, String producer, double stars) {
 		super();//why not implicit
 		this.id = id;
+		this.seller_id = seller_id;
 		this.name = name;
 		this.price = price;
 		this.stock = stock;

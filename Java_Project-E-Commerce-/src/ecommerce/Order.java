@@ -4,28 +4,24 @@ import java.util.ArrayList;
 
 public class Order {
 	private int id;//protected
+	private int customer_id;
 	private ArrayList<OrderItem> items = new ArrayList<>();
-	private Customer customer;
 	private double totalShippingFee;
 	
 	
-	public Order(int id,Customer customer,ArrayList<OrderItem> items) {
+	public Order(int id,int customer_id) {
 		super();
 		this.id = id;
-		this.items = items;
-		this.customer = customer;
-		if(customer!=null)
-		{
-			customer.addOrder(this); 
-		}
-		
+		this.customer_id = customer_id;		
 	}
 
 
 	public int getId() {
 		return id;
 	}
-
+	public int getCustomerId() {
+		return customer_id;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -40,15 +36,14 @@ public class Order {
 	public void setItems(ArrayList<OrderItem> items) {
 		this.items = items;
 	}
-
-
-	public Customer getCustomer() {
-		return customer;
+	public boolean addItem(OrderItem orderItem) {
+		return items.add(orderItem);
 	}
+	
 
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(int customer_id) {
+		this.customer_id = customer_id;
 	}
 
 
@@ -67,7 +62,7 @@ public class Order {
 		double totalWeight=0;
 		for(int i=0;i<items.size();i++)//(item : items)
 		{
-			totalWeight+=items.get(i).getLineItemWeight();
+//			totalWeight+=items.get(i).getLineItemWeight();
 		}
 		double weightKg = totalWeight / 1000.0;  //for easier calculation, because totalWeight was in grams
         
@@ -88,7 +83,7 @@ public class Order {
 		double subtotals=0;
 		for(int i=0;i<items.size();i++)
 		{
-			subtotals+= items.get(i).getLineItemSubtotal();
+//			subtotals+= items.get(i).getLineItemSubtotal();
 		}
 		return subtotals;
 	}

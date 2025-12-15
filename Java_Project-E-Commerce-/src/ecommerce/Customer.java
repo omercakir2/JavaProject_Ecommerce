@@ -1,18 +1,11 @@
 package ecommerce;
 
-import java.util.ArrayList;
-
 public class Customer extends User{
 	private String address;
-	private ArrayList<Order> orders = new ArrayList<>();
 	
-	
-	
-	
-	public Customer(String address, ArrayList<Order> orders) {
-		super();
+	public Customer(int id , String name ,String password,String address) {
+		super(id,name,password);
 		this.address = address;
-		this.orders = orders;
 	}
 	
 	public String getAddress() {
@@ -21,25 +14,5 @@ public class Customer extends User{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public ArrayList<Order> getOrders() {
-		return orders;
-	}
-	public void setOrders(ArrayList<Order> orders) {
-		this.orders = orders;
-	}
-	
-	public void addOrder(Order order)
-	{
-		orders.add(order);
-	}
-	
-	public String displayOrders() {
-		String out = "\n Orders of " + this.id + "\n";
-		for(Order order : orders) {
-			out += order.toString() + "\n";
-		}
-		return out;
-	}	
-	
 
 }
