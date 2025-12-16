@@ -3,7 +3,7 @@ package ecommerce;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Comparable<Order>{
 	private int id;//protected
 	private int customer_id;
 	private ArrayList<OrderItem> items = new ArrayList<>();
@@ -128,7 +128,7 @@ public class Order {
 		String output="\nOrder:";
 		for(OrderItem item:this.items) //for each loop for iterating through this ArrayList.
 		{
-			output+=items.toString();
+			output+=item.toString();
 		}
 		output+="\n\nTotal Shipping Fee: ";
 		output+=calculateTotalShippingFee();
@@ -140,7 +140,11 @@ public class Order {
 	}
 	
 	
-	
+	@Override
+    public int compareTo(Order other) {
+        // According to ids
+        return Integer.compare(this.id, other.id);
+    }
 
 }
 

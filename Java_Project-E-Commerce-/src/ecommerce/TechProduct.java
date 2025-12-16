@@ -10,7 +10,7 @@ public class TechProduct extends Product{
 	//television 20000g
 	//console is 3000g 
 	
-
+	
 
 	@Override
 	public double calculateTax() { //tax is 40% for the tech products
@@ -111,7 +111,7 @@ public class TechProduct extends Product{
 	@Override
 	public String toString() {
 
-	String output = "\nTechProduct \nid" + "\nname=" + name + "\nprice=" + price + "\nstock=" + stock + "\nproducer=" + producer
+	String output = "\nTechProduct \nid=" + this.id +  "\nname=" + name + "\nprice=" + price + "\nstock=" + stock + "\nproducer=" + producer
 			+ "\nstars=" + stars + "\nshippingWeight=" + shippingWeight
 			+"\ntype=" + type + "\nyearOfProduction=" + yearOfProduction+"\nguarentee="+guarentee;
 		return output;

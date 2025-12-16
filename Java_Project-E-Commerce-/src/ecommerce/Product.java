@@ -2,7 +2,7 @@ package ecommerce;
 
 import java.util.Objects;
 
-public abstract class Product implements ProductInterface{
+public abstract class Product implements ProductInterface, Comparable<Product>{
 	protected int id;//visibility ??
 	protected String name;
 	protected double price;
@@ -24,6 +24,7 @@ public abstract class Product implements ProductInterface{
 		this.stock = stock;
 		this.producer = producer;
 		this.stars = stars;
+		product_count++;
 	}
 
 	
@@ -120,7 +121,11 @@ public abstract class Product implements ProductInterface{
 		return "\nProduct \nid=" + id + "\n name=" + name + "\nprice=" + price + "\nstock=" + stock + "\nproducer="
 				+ producer + "\nstars=" + stars;
 	}
-	
+	@Override
+    public int compareTo(Product other) {
+        // List according to IDs
+        return Integer.compare(this.id, other.id);
+    }
 	
 
 }

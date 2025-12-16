@@ -1,11 +1,12 @@
 package ecommerce;
 
 import java.util.HashSet;
+import java.util.TreeSet;
 
 public class ECommerceSys {
 	public static HashSet<User> users = new HashSet<>();
-	public static HashSet<Product> products = new HashSet<>();
-	public static HashSet<Order> orders = new HashSet<>();
+	public static TreeSet<Product> products = new TreeSet<>();
+	public static TreeSet<Order> orders = new TreeSet<>();
 	
 	
 	
@@ -38,6 +39,18 @@ public class ECommerceSys {
 	}
 	
 	public static boolean addToOrder(OrderItem oitem,Order order) {
+		Product product = ECommerceSys.searchProductById(oitem.getProductID());
+		int stock = product.getStock();
+		int quantity = oitem.getQuantity();
+		if(stock >= quantity) {
+			product.setStock(stock-quantity);
+		}
+		else {
+			System.out.println("Since there is not that much product in stock, you will get how many stock is there");
+			oitem.setQuantity(stock);
+			product.setStock(0);
+			
+		}
 		return order.addItem(oitem);
 	}
 	

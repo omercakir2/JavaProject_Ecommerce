@@ -60,7 +60,7 @@ public class MarketProduct extends Product{
 	@Override
 	public String toString() {
 		return "\nMarketProduct \nid="+id + "\nname=" + name
-				+ "\nprice=" + price + stock + "\nproducer=" + producer + "\nstars=" + stars
+				+ "\nprice=" + price + "\nstock="+stock + "\nproducer=" + producer + "\nstars=" + stars
 				+ "\nshippingWeight=" + shippingWeight+"\ntype=" + type + "\nexpireDate=" + expireDate;
 	}
 	

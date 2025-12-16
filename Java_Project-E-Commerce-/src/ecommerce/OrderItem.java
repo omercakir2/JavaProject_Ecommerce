@@ -22,7 +22,9 @@ public class OrderItem {
     public int getQuantity() {
         return quantity;
     }
-    
+    public void setQuantity(int quantity) {
+    	this.quantity = quantity;
+    }
     public double getLineItemWeight() 
     {
         // Uses the Product's weight and multiplies it by the quantity
