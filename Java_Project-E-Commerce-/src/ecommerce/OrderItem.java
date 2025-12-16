@@ -23,7 +23,29 @@ public class OrderItem {
         return quantity;
     }
     
-
+    public double getLineItemWeight() 
+    {
+        // Uses the Product's weight and multiplies it by the quantity
+    	Product product  = ECommerceSys.searchProductById(product_id);
+    	if(product==null) {
+    		System.out.println("Error in 'getLineItemWeight()' [cant found the product]");
+    		return 0;
+    	}
+    	
+        return product.getShippingWeight() * this.quantity;
+    }
+    public double getLineItemSubtotal()  //calculating the taxIncluded price for the product and how many of it's purchased.
+    {
+    	Product product  = ECommerceSys.searchProductById(product_id);
+    	if(product==null) {
+    		System.out.println("Error in 'getLineItemSubtotal()' [cant found the product]");
+    		return 0;
+    	}
+      double taxRate= product.calculateTax();
+      double basePrice=product.getPrice();
+      double finalPrice=basePrice*(1+taxRate);
+      return(finalPrice*this.quantity);
+    }
 	@Override
 	public String toString() 
 	{

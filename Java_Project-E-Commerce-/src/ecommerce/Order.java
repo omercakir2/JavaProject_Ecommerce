@@ -1,6 +1,7 @@
 package ecommerce;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Order {
 	private int id;//protected
@@ -9,10 +10,13 @@ public class Order {
 	private double totalShippingFee;
 	
 	
-	public Order(int id,int customer_id) {
+	static private int order_count = 0;
+	
+	public Order(int customer_id) {
 		super();
-		this.id = id;
+		this.id = order_count;
 		this.customer_id = customer_id;		
+		order_count++;
 	}
 
 
@@ -62,7 +66,7 @@ public class Order {
 		double totalWeight=0;
 		for(int i=0;i<items.size();i++)//(item : items)
 		{
-//			totalWeight+=items.get(i).getLineItemWeight();
+			totalWeight+=items.get(i).getLineItemWeight();
 		}
 		double weightKg = totalWeight / 1000.0;  //for easier calculation, because totalWeight was in grams
         
@@ -83,7 +87,7 @@ public class Order {
 		double subtotals=0;
 		for(int i=0;i<items.size();i++)
 		{
-//			subtotals+= items.get(i).getLineItemSubtotal();
+			subtotals+= items.get(i).getLineItemSubtotal();
 		}
 		return subtotals;
 	}
@@ -92,6 +96,30 @@ public class Order {
 		double shippingFee=calculateTotalShippingFee();
 		double subtotals = calculateSubtotals();
 		return(shippingFee+subtotals);
+	}
+
+
+	
+	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		return id == other.id;
 	}
 
 

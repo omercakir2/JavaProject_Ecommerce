@@ -1,6 +1,6 @@
 package ecommerce;
 
-import java.util.Scanner;
+import java.util.Objects;
 
 public abstract class Product implements ProductInterface{
 	protected int id;//visibility ??
@@ -13,11 +13,11 @@ public abstract class Product implements ProductInterface{
 	protected int seller_id;
 
 	
+	static private int product_count = 0;
 	
-	
-	public Product(int id,int seller_id, String name, double price, int stock, String producer, double stars) {
+	public Product(int seller_id, String name, double price, int stock, String producer, double stars) {
 		super();//why not implicit
-		this.id = id;
+		this.id = product_count;
 		this.seller_id = seller_id;
 		this.name = name;
 		this.price = price;
@@ -26,32 +26,6 @@ public abstract class Product implements ProductInterface{
 		this.stars = stars;
 	}
 
-
-	public void getInput()
-	{
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.print("Enter product id: ");
-		id = sc.nextInt();
-		sc.nextLine();
-		
-		System.out.print("Enter product name: ");
-		name = sc.nextLine();
-		
-		
-		System.out.print("Enter product price: ");
-		price = sc.nextDouble();
-		sc.nextLine();
-		
-		System.out.print("Enter stock for the product: ");
-		stock = sc.nextInt();
-		sc.nextLine();
-		
-		System.out.print("Enter producer: ");
-		producer = sc.nextLine();
-		
-	}
-	
 	
 	public int getId() {
 		return id;
@@ -117,6 +91,29 @@ public abstract class Product implements ProductInterface{
 	public double calculateTax() {
 		return 0;//?
 	}
+
+	
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return id == other.id;
+	}
+
 
 	@Override
 	public String toString() {

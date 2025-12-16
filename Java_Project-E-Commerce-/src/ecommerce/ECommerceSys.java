@@ -1,10 +1,9 @@
 package ecommerce;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ECommerceSys {
-	public static ArrayList<User> users = new ArrayList<User>();
+	public static HashSet<User> users = new HashSet<>();
 	public static HashSet<Product> products = new HashSet<>();
 	public static HashSet<Order> orders = new HashSet<>();
 	
@@ -19,9 +18,19 @@ public class ECommerceSys {
 		return false;
 	}
 	
+	public static Product searchProductById(int id) {
+		for(Product pro : products) {
+			if(pro.getId()==id) {
+				return pro;
+			}
+		}
+		return null;
+	}
+	
 	public static boolean addUser(User user) {
-		if(searchUserID(user.getId())) 
+		if(users.contains(user)) 
 		{
+			System.out.println("User is already exist");
 			return false;
 		}
 		users.add(user);
@@ -33,6 +42,10 @@ public class ECommerceSys {
 	}
 	
 	public static boolean addProduct(Product product) {
+		if(products.contains(product)) {
+			System.out.println("Already exists![addProduct()]");
+			return false;
+		}
 		return products.add(product);
 	}
 	public static boolean removeProduct(Product product){//seller icin
@@ -49,14 +62,7 @@ public class ECommerceSys {
 		}
 		return out;
 	}
-	public static Product searchProductById(int id) {
-		for(Product pro : products) {
-			if(pro.getId()==id) {
-				return pro;
-			}
-		}
-		return null;
-	}
+	
 	public static String displayAllProducts() {
 		String out = "";
 		for(Product pro : products) {
@@ -73,24 +79,5 @@ public class ECommerceSys {
 		return out;
 	}
 	
-	public double getLineItemWeight(OrderItem oitem) 
-    {
-		
-		Product product  = searchProductById(oitem.getProductID());
-		if(product != null) {
-			
-			return product.getShippingWeight() * oitem.getQuantity();
-		}
-        // Uses the Product's weight and multiplies it by the quantity
-		return -1;
-    }
-    
-    public double getLineItemSubtotal(OrderItem oitem)  //calculating the taxIncluded price for the product and how many of it's purchased.
-    {
-    Product product  = searchProductById(oitem.getProductID());
-      double taxRate= product.calculateTax();
-      double basePrice=product.getPrice();
-      double finalPrice=basePrice*(1+taxRate);
-      return(finalPrice*oitem.getQuantity());
-    }
+	
 }

@@ -7,9 +7,9 @@ public class ClothingProduct extends Product{
 	
 	
 	
-	public ClothingProduct(int id, int seller_id,String name, double price, int stock, String producer, double stars, String type,
+	public ClothingProduct(int seller_id,String name, double price, int stock, String producer, double stars, String type,
 			String gender, String material, String season, String color) {
-		super(id, seller_id,name, price, stock, producer, stars);
+		super(seller_id,name, price, stock, producer, stars);
 		this.type = type;
 		this.gender = gender;
 		this.material = material;
